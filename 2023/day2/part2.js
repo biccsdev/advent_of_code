@@ -121,108 +121,231 @@ function getGames(input) {
 }
 
 /*
-    Iterates over the array of games and determines if its valid or not,
-    if the game is valid, sums the game's id to the total, if is invalid it just ignores it
-    RETURN -> sum of the game id's that are valid
+    Sets the minimum number of cubes for each color inside the colors object
+*/
+function handleRowParse(game, j, colors) {
+    if (game[j + 1] != " ") {
+        switch (game[j + 1]) {
+            case "1":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "2":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "3":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "4":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "5":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "6":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "7":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "8":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "9":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+            case "0":
+                if ((game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
+                    if (colors.red < Number(game[j] + game[j + 1])) {
+                        colors.red = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
+                    if (colors.green < Number(game[j] + game[j + 1])) {
+                        colors.green = Number(game[j] + game[j + 1]);
+                    }
+                } else if ((game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "blue") {
+                    if (colors.blue < Number(game[j] + game[j + 1])) {
+                        colors.blue = Number(game[j] + game[j + 1]);
+                    }
+                }
+                break;
+        }
+    } else if (game[j + 1] == " ") {
+        if ((game[j + 2] + game[j + 3] + game[j + 4]) == "red") {
+            if (colors.red < Number(game[j])) {
+                colors.red = Number(game[j]);
+            }
+        } else if ((game[j + 2] + game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6]) == "green") {
+            if (colors.green < Number(game[j])) {
+                colors.green = Number(game[j]);
+            }
+        } else if ((game[j + 2] + game[j + 3] + game[j + 4] + game[j + 5]) == "blue") {
+            if (colors.blue < Number(game[j])) {
+                colors.blue = Number(game[j]);
+            }
+        }
+    }
+}
+
+/*
+    Iterates over the array of games, gets the minimum amount of cubes for each game, and
+    calculates the sum of the power of the minimum amount of cubes for each game  
 */
 function calculateTotal(input) {
     input = getGames(input);
-    let total = 0;
+    let totalPower = 0;
+    let colors = { blue: 0, green: 0, red: 0 }
     for (let i = 0; i < input.length - 1; i++) {
         const game = input[i];
-        let outOfBounds = false;
+        colors.blue = 0;
+        colors.green = 0;
+        colors.red = 0;
         for (let j = 8; j < game.length; j++) {
             const char = game[j];
             switch (char) {
                 case "1":
-                    if (game[j + 1] != " ") {
-                        switch (game[j + 1]) {
-                            case "1":
-                                break;
-                            case "2":
-                                break;
-                            case "3":
-                                if (game[j + 2] != " " || (game[j + 3] + game[j + 4] + game[j + 5]) == "red") {
-                                    outOfBounds = true;
-                                }
-                                break;
-                            case "4":
-                                if (game[j + 2] != " " || (game[j + 3] + game[j + 4] + game[j + 5]) == "red" || (game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") {
-                                    outOfBounds = true;
-                                }
-                                break;
-                            case "5":
-                                outOfBounds = true;
-                                break;
-                            case "6":
-                                outOfBounds = true;
-                                break;
-                            case "7":
-                                outOfBounds = true;
-                                break;
-                            case "8":
-                                outOfBounds = true;
-                                break;
-                            case "9":
-                                outOfBounds = true;
-                                break;
-                        }
-                    }
+                    handleRowParse(game, j, colors);
                     break;
                 case "2":
-                    if (game[j + 1] != " ") {
-                        outOfBounds = true;
-                    }
+                    handleRowParse(game, j, colors);
                     break;
                 case "3":
-                    if (game[j + 1] != " ") {
-                        outOfBounds = true;
-                    }
+                    handleRowParse(game, j, colors);
                     break;
                 case "4":
-                    if (game[j + 1] != " ") {
-                        outOfBounds = true;
-                    }
+                    handleRowParse(game, j, colors);
                     break;
                 case "5":
-                    if (game[j + 1] != " ") {
-                        outOfBounds = true;
-                    }
+                    handleRowParse(game, j, colors);
                     break;
                 case "6":
-                    if (game[j + 1] != " ") {
-                        outOfBounds = true;
-                    }
+                    handleRowParse(game, j, colors);
                     break;
                 case "7":
-                    if (game[j + 1] != " ") {
-                        outOfBounds = true;
-                    }
+                    handleRowParse(game, j, colors);
                     break;
                 case "8":
-                    if (game[j + 1] != " ") {
-                        outOfBounds = true;
-                    }
+                    handleRowParse(game, j, colors);
                     break;
                 case "9":
-                    if (game[j + 1] != " ") {
-                        outOfBounds = true;
-                    }
+                    handleRowParse(game, j, colors);
                     break;
             }
         }
-        if (!outOfBounds) {
-            if (game[6] != ":") {
-                total += Number(game[5] + game[6])
-            } else {
-                total += Number(game[5])
-            }
-        }
+        totalPower += (colors.blue * colors.red * colors.green);
     }
-    return total;
+    return totalPower;
 }
 
 
 /* MAIN */
 const result = calculateTotal(input);
 console.log(result);
+
