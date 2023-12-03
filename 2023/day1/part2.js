@@ -7,23 +7,23 @@ function convertString(str) {
     let txt = str.replaceAll(/\n|one|two|three|four|five|six|seven|eight|nine/gi, function (number) {
         switch (number.toLowerCase()) {
             case "one":
-                return "1";
+                return "on1e";
             case "two":
-                return "2";
+                return "tw2o";
             case "three":
-                return "3";
+                return "thr3ee";
             case "four":
-                return "4";
+                return "fou4r";
             case "five":
-                return "5";
+                return "fi5ve";
             case "six":
-                return "6";
+                return "s6ix";
             case "seven":
-                return "7";
+                return "sev7en";
             case "eight":
-                return "8";
+                return "eig8ht";
             case "nine":
-                return "9";
+                return "ni9ne";
             case `\n`:
                 return " ";
         }
@@ -1110,6 +1110,14 @@ twonrpvnnmvkh2threejzcpz
 // `;
 
 /* MAIN */
-const parsed = convertString(txt);
+
+/*
+    Parses the data two times, first to convert all the written numbers and 
+    leave the overlapped written numbers for the second time, second time  
+    parses all previously left overlapped written numbers
+*/
+const parsedOne = convertString(txt);
+const parsed = convertString(parsedOne);
+
 const totalCount = sumHiddenNumbers(parsed);
 console.log(totalCount);
