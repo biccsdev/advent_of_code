@@ -99,3 +99,131 @@ Game 98: 2 blue, 2 red, 9 green; 4 green, 5 blue, 1 red; 15 green, 3 red, 9 blue
 Game 99: 15 red, 7 green, 11 blue; 2 blue, 12 green, 17 red; 6 red, 3 blue, 11 green; 14 red, 13 green, 5 blue
 Game 100: 5 green, 17 blue, 5 red; 15 blue; 13 green, 8 red, 3 blue; 16 blue, 15 green, 8 red; 16 green, 2 blue, 3 red
 `;
+
+const calibrationInput = `Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
+`;
+
+const totalRed = 12;
+const totalGreen = 13;
+const totalBlue = 14;
+
+/*
+    Converts the input string into an array in which each position contains a game row string
+    RETURN -> Array of games
+*/
+function getGames(input) {
+    let gamesArr = input.split(`\n`);
+    return gamesArr
+}
+
+/*
+    Iterates over the array of games and determines if its valid or not,
+    if the game is valid, sums the game's id to the total, if is invalid it just ignores it
+    RETURN -> sum of the game id's that are valid
+*/
+function calculateTotal(input) {
+    input = getGames(input);
+    let total = 0;
+    for (let i = 0; i < input.length - 1; i++) {
+        const game = input[i];
+        let outOfBounds = false;
+        for (let j = 8; j < game.length; j++) {
+            const char = game[j];
+            switch (char) {
+                case "1":
+                    if (game[j + 1] != " ") {
+                        switch (game[j + 1]) {
+                            case "1":
+                                break;
+                            case "2":
+                                break;
+                            case "3":
+                                if (game[j + 2] != " " || (game[j + 3] + game[j + 4] + game[j + 5]) == "red") { //if red
+                                    outOfBounds = true;
+                                }
+                                break;
+                            case "4":
+                                if (game[j + 2] != " " || (game[j + 3] + game[j + 4] + game[j + 5]) == "red" || (game[j + 3] + game[j + 4] + game[j + 5] + game[j + 6] + game[j + 7]) == "green") { //if red or green
+                                    outOfBounds = true;
+                                }
+                                break;
+                            case "5":
+                                outOfBounds = true;
+                                break;
+                            case "6":
+                                outOfBounds = true;
+                                break;
+                            case "7":
+                                outOfBounds = true;
+                                break;
+                            case "8":
+                                outOfBounds = true;
+                                break;
+                            case "9":
+                                outOfBounds = true;
+                                break;
+                        }
+                    }
+                    break;
+                case "2":
+                    if (game[j + 1] != " ") {
+                        outOfBounds = true;
+                    }
+                    break;
+                case "3":
+                    if (game[j + 1] != " ") {
+                        outOfBounds = true;
+                    }
+                    break;
+                case "4":
+                    if (game[j + 1] != " ") {
+                        outOfBounds = true;
+                    }
+                    break;
+                case "5":
+                    if (game[j + 1] != " ") {
+                        outOfBounds = true;
+                    }
+                    break;
+                case "6":
+                    if (game[j + 1] != " ") {
+                        outOfBounds = true;
+                    }
+                    break;
+                case "7":
+                    if (game[j + 1] != " ") {
+                        outOfBounds = true;
+                    }
+                    break;
+                case "8":
+                    if (game[j + 1] != " ") {
+                        outOfBounds = true;
+                    }
+                    break;
+                case "9":
+                    if (game[j + 1] != " ") {
+                        outOfBounds = true;
+                    }
+                    break;
+            }
+        }
+        if (!outOfBounds) {
+            if (game[6] != ":") {
+                total += Number(game[5] + game[6])
+            } else {
+                total += Number(game[5])
+            }
+        }
+    }
+    return total;
+}
+
+
+/* MAIN */
+const result = calculateTotal(input);
+console.log(result);
+
