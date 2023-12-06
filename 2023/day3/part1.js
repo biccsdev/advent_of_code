@@ -65,7 +65,7 @@ function parseAboveAndBelowRows(numObj, rows) {
             if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
                 for (let j = 0; j < numObj.numPosition.length; j++) {
                     const symbolPosition = numObj.numPosition[j];
-                    if (symbolPosition == i || symbolPosition == numObj.numPosition[0] - 1 || symbolPosition == numObj.numPosition[numObj.numPosition.length] + 1) {
+                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
                         return true;
                     }
                 }
@@ -89,7 +89,7 @@ function parseAboveAndBelowRows(numObj, rows) {
             if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
                 for (let j = 0; j < numObj.numPosition.length; j++) {
                     const symbolPosition = numObj.numPosition[j];
-                    if (symbolPosition == i || symbolPosition == numObj.numPosition[0] - 1 || symbolPosition == numObj.numPosition[numObj.numPosition.length] + 1) {
+                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
                         return true;
                     }
                 }
@@ -101,7 +101,7 @@ function parseAboveAndBelowRows(numObj, rows) {
             if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
                 for (let j = 0; j < numObj.numPosition.length; j++) {
                     const symbolPosition = numObj.numPosition[j];
-                    if (symbolPosition == i || symbolPosition == numObj.numPosition[0] - 1 || symbolPosition == numObj.numPosition[numObj.numPosition.length] + 1) {
+                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
                         return true;
                     }
                 }
@@ -125,7 +125,7 @@ function parseAboveAndBelowRows(numObj, rows) {
             if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
                 for (let j = 0; j < numObj.numPosition.length; j++) {
                     const symbolPosition = numObj.numPosition[j];
-                    if (symbolPosition == i || symbolPosition == numObj.numPosition[0] - 1 || symbolPosition == numObj.numPosition[numObj.numPosition.length] + 1) {
+                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
                         return true;
                     }
                 }
