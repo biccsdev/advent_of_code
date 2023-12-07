@@ -203,10 +203,10 @@ function parseAboveAndBelowRows(numObj, rows) {
         // Parse row below
         for (let i = 0; i < rows[numObj.row + 1].length; i++) {
             const element = rows[numObj.row + 1][i];
-            if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+            if (element != "." && !element.match(/[0-9]/)) {
                 for (let j = 0; j < numObj.numPosition.length; j++) {
-                    const symbolPosition = numObj.numPosition[j];
-                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
+                    const numberPosition = numObj.numPosition[j];
+                    if (numberPosition == i || numberPosition - 1 == i || numberPosition + 1 == i) {
                         return true;
                     }
                 }
@@ -214,12 +214,12 @@ function parseAboveAndBelowRows(numObj, rows) {
         }
         // Parse the row where the number is, in the position before the number starts
         let element = rows[numObj.row][numObj.numPosition[0] - 1]
-        if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
             return true;
         }
         // Parse the row where the number is, in the position after the number starts
-        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length] + 1]
-        if (element != undefined && element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length - 1] + 1]
+        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
             return true;
         }
     }
@@ -227,10 +227,10 @@ function parseAboveAndBelowRows(numObj, rows) {
         // Parse row below
         for (let i = 0; i < rows[numObj.row + 1].length; i++) {
             const element = rows[numObj.row + 1][i];
-            if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+            if (element != "." && !element.match(/[0-9]/)) {
                 for (let j = 0; j < numObj.numPosition.length; j++) {
-                    const symbolPosition = numObj.numPosition[j];
-                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
+                    const numberPosition = numObj.numPosition[j];
+                    if (numberPosition == i || numberPosition - 1 == i || numberPosition + 1 == i) {
                         return true;
                     }
                 }
@@ -239,10 +239,10 @@ function parseAboveAndBelowRows(numObj, rows) {
         // Parse row above
         for (let i = 0; i < rows[numObj.row - 1].length; i++) {
             const element = rows[numObj.row - 1][i];
-            if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+            if (element != "." && !element.match(/[0-9]/)) {
                 for (let j = 0; j < numObj.numPosition.length; j++) {
-                    const symbolPosition = numObj.numPosition[j];
-                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
+                    const numberPosition = numObj.numPosition[j];
+                    if (numberPosition == i || numberPosition - 1 == i || numberPosition + 1 == i) {
                         return true;
                     }
                 }
@@ -250,12 +250,12 @@ function parseAboveAndBelowRows(numObj, rows) {
         }
         // Parse the row where the number is, in the position before the number starts
         let element = rows[numObj.row][numObj.numPosition[0] - 1]
-        if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
             return true;
         }
         // Parse the row where the number is, in the position after the number starts
-        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length] + 1]
-        if (element != undefined && element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length - 1] + 1]
+        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
             return true;
         }
     }
@@ -263,10 +263,10 @@ function parseAboveAndBelowRows(numObj, rows) {
         // Parse row above
         for (let i = 0; i < rows[numObj.row - 1].length; i++) {
             const element = rows[numObj.row - 1][i];
-            if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+            if (element != "." && !element.match(/[0-9]/)) {
                 for (let j = 0; j < numObj.numPosition.length; j++) {
-                    const symbolPosition = numObj.numPosition[j];
-                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
+                    const numberPosition = numObj.numPosition[j];
+                    if (numberPosition == i || numberPosition - 1 == i || numberPosition + 1 == i) {
                         return true;
                     }
                 }
@@ -274,12 +274,12 @@ function parseAboveAndBelowRows(numObj, rows) {
         }
         // Parse the row where the number is, in the position before the number starts
         let element = rows[numObj.row][numObj.numPosition[0] - 1]
-        if (element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
             return true;
         }
         // Parse the row where the number is, in the position after the number starts
-        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length] + 1]
-        if (element != undefined && element != "." && element != "1" && element != "2" && element != "3" && element != "4" && element != "5" && element != "6" && element != "7" && element != "8" && element != "9" && element != "0") {
+        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length - 1] + 1]
+        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
             return true;
         }
     }
