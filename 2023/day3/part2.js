@@ -174,7 +174,7 @@ function extractSymbol(input) {
         for (let j = 0; j < row.length; j++) {
             num = "";
             positions = [];
-            while (row[j] == "1" || row[j] == "2" || row[j] == "3" || row[j] == "4" || row[j] == "5" || row[j] == "6" || row[j] == "7" || row[j] == "8" || row[j] == "9" || row[j] == "0") {
+            if (row[j] == "*") {
                 positions.push(j);
                 num += row[j];
                 j++;
@@ -195,110 +195,104 @@ function extractSymbol(input) {
 }
 
 /*
-  INPUT -> an array of the positions of the numbers from the between row, to check if are valid sumable numbers
-  RETURN -> a boolean indicating if the number is summable 
+  INPUT -> an array of the positions of the symbol from the between row, to check if it has adjacent numbers
+  RETURN -> an array with the pair of the numbers to multiply 
 */
-function parseAboveAndBelowRows(numObj, rows) {
-    if (numObj.row == 0) {
+function parseAboveAndBelowRows(rowObj, rows) {
+    let nums = [];
+    let num = "";
+
+    if (rowObj.row == 0) {
         // Parse row below
-        for (let i = 0; i < rows[numObj.row + 1].length; i++) {
-            const element = rows[numObj.row + 1][i];
-            if (element != "." && !element.match(/[0-9]/)) {
-                for (let j = 0; j < numObj.numPosition.length; j++) {
-                    const numberPosition = numObj.numPosition[j];
-                    if (numberPosition == i || numberPosition - 1 == i || numberPosition + 1 == i) {
-                        return true;
+        for (let i = 0; i < rows[rowObj.row + 1].length; i++) {
+            const element = rows[rowObj.row + 1][i];
+            if (element.match(/[0-9]/)) {
+                for (let j = 0; j < rowObj.numPosition.length; j++) {
+                    const symbolPosition = rowObj.numPosition[j];
+                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
+                        nums.push(element.match(/\*(\d+)\*/))
                     }
                 }
             }
         }
-        // Parse the row where the number is, in the position before the number starts
-        let element = rows[numObj.row][numObj.numPosition[0] - 1]
-        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
-            return true;
-        }
-        // Parse the row where the number is, in the position after the number starts
-        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length - 1] + 1]
-        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
-            return true;
-        }
     }
-    if (numObj.row != 0 && (numObj.row != rows.length - 1)) {
+    //TODO: FINISH
+    if (rowObj.row != 0 && (rowObj.row != rows.length - 1)) {
         // Parse row below
-        for (let i = 0; i < rows[numObj.row + 1].length; i++) {
-            const element = rows[numObj.row + 1][i];
-            if (element != "." && !element.match(/[0-9]/)) {
-                for (let j = 0; j < numObj.numPosition.length; j++) {
-                    const numberPosition = numObj.numPosition[j];
-                    if (numberPosition == i || numberPosition - 1 == i || numberPosition + 1 == i) {
-                        return true;
+        for (let i = 0; i < rows[rowObj.row + 1].length; i++) {
+            const element = rows[rowObj.row + 1][i];
+            if (element.match(/[0-9]/)) {
+                for (let j = 0; j < rowObj.numPosition.length; j++) {
+                    const symbolPosition = rowObj.numPosition[j];
+                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
+                        while (rows[rowObj.row + 1][i] == "1" || rows[rowObj.row + 1][i] == "2" || rows[rowObj.row + 1][i] == "3" || rows[rowObj.row + 1][i] == "4" || rows[rowObj.row + 1][i] == "5" || rows[rowObj.row + 1][i] == "6" || rows[rowObj.row + 1][i] == "7" || rows[rowObj.row + 1][i] == "8" || rows[rowObj.row + 1][i] == "9" || rows[rowObj.row + 1][i] == "0") {
+                            num += rows[rowObj.row + 1][i];
+                            i++;
+                        }
+                        nums.push(num);
+                        num = "";
                     }
                 }
             }
         }
         // Parse row above
-        for (let i = 0; i < rows[numObj.row - 1].length; i++) {
-            const element = rows[numObj.row - 1][i];
-            if (element != "." && !element.match(/[0-9]/)) {
-                for (let j = 0; j < numObj.numPosition.length; j++) {
-                    const numberPosition = numObj.numPosition[j];
-                    if (numberPosition == i || numberPosition - 1 == i || numberPosition + 1 == i) {
-                        return true;
+        for (let i = 0; i < rows[rowObj.row - 1].length; i++) {
+            const element = rows[rowObj.row - 1][i];
+            if (element.match(/[0-9]/)) {
+                for (let j = 0; j < rowObj.numPosition.length; j++) {
+                    const symbolPosition = rowObj.numPosition[j];
+                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
+                        nums.push(element.match(/\*(\d+)\*/))
                     }
                 }
             }
-        }
-        // Parse the row where the number is, in the position before the number starts
-        let element = rows[numObj.row][numObj.numPosition[0] - 1]
-        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
-            return true;
-        }
-        // Parse the row where the number is, in the position after the number starts
-        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length - 1] + 1]
-        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
-            return true;
-        }
-    }
-    if (numObj.row == rows.length - 1) {
-        // Parse row above
-        for (let i = 0; i < rows[numObj.row - 1].length; i++) {
-            const element = rows[numObj.row - 1][i];
-            if (element != "." && !element.match(/[0-9]/)) {
-                for (let j = 0; j < numObj.numPosition.length; j++) {
-                    const numberPosition = numObj.numPosition[j];
-                    if (numberPosition == i || numberPosition - 1 == i || numberPosition + 1 == i) {
-                        return true;
-                    }
-                }
-            }
-        }
-        // Parse the row where the number is, in the position before the number starts
-        let element = rows[numObj.row][numObj.numPosition[0] - 1]
-        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
-            return true;
-        }
-        // Parse the row where the number is, in the position after the number starts
-        element = rows[numObj.row][numObj.numPosition[numObj.numPosition.length - 1] + 1]
-        if (element != undefined && element != "." && !element.match(/[0-9]/)) {
-            return true;
         }
     }
 
-    return false;
+    if (rowObj.row == rows.length - 1) {
+        // Parse row above
+        for (let i = 0; i < rows[rowObj.row - 1].length; i++) {
+            const element = rows[rowObj.row - 1][i];
+            if (element.match(/[0-9]/)) {
+                for (let j = 0; j < rowObj.numPosition.length; j++) {
+                    const symbolPosition = rowObj.numPosition[j];
+                    if (symbolPosition == i || symbolPosition - 1 == i || symbolPosition + 1 == i) {
+                        nums.push(element.match(/\*(\d+)\*/))
+                    }
+                }
+            }
+        }
+    }
+
+
+    // Parse the row where the symbol is, in the position before the symbol starts
+    let element = rows[rowObj.row][rowObj.numPosition[0] - 1]
+    if (element != undefined && element != "." && element.match(/[0-9]/)) {
+        nums.push(element.match(/(\d+)\*/));
+    }
+    // Parse the row where the symbol is, in the position after the symbol starts
+    element = rows[rowObj.row][rowObj.numPosition[rowObj.numPosition.length - 1] + 1]
+    if (element != undefined && element != "." && element.match(/[0-9]/)) {
+        nums.push(element.match(/\*(\d+)/));
+    }
+    if (nums.length != 2) {
+        return [];
+    }
+    return nums;
 }
 
 /*
   RETURN -> the total sum of the parsed numbers
 */
-function parseRows(parsedNumbers, rows) {
+function parseRows(parsedData, rows) {
     let total = 0;
-    for (let i = 0; i < parsedNumbers.length; i++) {
-        const element = parsedNumbers[i];
+    for (let i = 0; i < parsedData.length; i++) {
+        const element = parsedData[i];
         for (let j = 0; j < element.length; j++) {
-            const num = element[j];
-            let summable = parseAboveAndBelowRows(num, rows)
-            if (summable) {
-                total += Number(num.number);
+            const row = element[j];
+            let summable = parseAboveAndBelowRows(row, rows)
+            if (summable.length > 0) {
+                total += Number(summable[1]) * Number(summable[2]);
             }
         }
     }
@@ -306,8 +300,8 @@ function parseRows(parsedNumbers, rows) {
 }
 
 /* MAIN */
-const rows = splitInput(input);
-const parsedNumbers = extractSymbol(rows);
-const result = parseRows(parsedNumbers, rows);
+const rows = splitInput(calibrationInput);
+const parsedData = extractSymbol(rows);
+const result = parseRows(parsedData, rows);
 
 console.log(result)
